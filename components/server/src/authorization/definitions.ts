@@ -15,11 +15,12 @@ export type ProjectRelation = "org";
 export type Relation = OrganizationRelation | ProjectRelation;
 
 export type OrganizationPermission =
-    | "membership"
     | "read_info"
     | "write_info"
     | "read_members"
     | "write_members"
+    | "read_settings"
+    | "write_settings"
     | "create_project";
 export type ProjectPermission = "write_info" | "read_info";
 export type Permission = OrganizationPermission;
