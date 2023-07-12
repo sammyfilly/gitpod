@@ -16,8 +16,8 @@ import { AuthFlow, AuthProvider } from "./auth-provider";
 import { TokenProvider } from "../user/token-provider";
 import { AuthProviderService } from "./auth-provider-service";
 import { UserService } from "../user/user-service";
-import { increaseLoginCounter } from "../prometheus-metrics";
 import { SignInJWT } from "./jwt";
+import { reportLoginCompleted } from "../prometheus-metrics";
 
 @injectable()
 export class Authenticator {
@@ -166,8 +166,8 @@ export class Authenticator {
         }
 
         if (!authProvider.info.verified) {
-            increaseLoginCounter("failed", authProvider.info.host);
-            log.info(`Login with "${host}" is not permitted.`, {
+            reportLoginCompleted("failed_client", "git");
+            log.warn(`Login with "${host}" is not permitted as the provider has not been verified.`, {
                 "login-flow": true,
                 ap: authProvider.info,
             });
