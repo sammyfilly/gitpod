@@ -14,7 +14,6 @@
 /components/ee/agent-smith @gitpod-io/engineering-workspace
 /components/gitpod-cli @gitpod-io/engineering-ide
 /components/gitpod-db @gitpod-io/engineering-webapp
-/components/gitpod-messagebus @gitpod-io/engineering-webapp
 /components/gitpod-protocol @gitpod-io/engineering-webapp
 /components/gitpod-protocol/java @gitpod-io/engineering-ide
 /components/gitpod-protocol/src/typings/globals.ts @gitpod-io/engineering-ide
