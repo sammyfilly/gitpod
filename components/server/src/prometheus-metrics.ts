@@ -7,7 +7,7 @@
 import * as prometheusClient from "prom-client";
 
 export function registerServerMetrics(registry: prometheusClient.Registry) {
-    registry.registerMetric(loginComletedTotal);
+    registry.registerMetric(loginCompletedTotal);
     registry.registerMetric(apiConnectionCounter);
     registry.registerMetric(apiConnectionClosedCounter);
     registry.registerMetric(apiCallCounter);
@@ -36,14 +36,14 @@ export function registerServerMetrics(registry: prometheusClient.Registry) {
     registry.registerMetric(updateSubscribersRegistered);
 }
 
-const loginComletedTotal = new prometheusClient.Counter({
+const loginCompletedTotal = new prometheusClient.Counter({
     name: "gitpod_login_completed_total",
     help: "Total number of logins completed into gitpod, by status",
     labelNames: ["status", "type"],
 });
 
 export function reportLoginCompleted(status: LoginCounterStatus, type: "git" | "sso") {
-    loginComletedTotal.labels(status, type).inc();
+    loginCompletedTotal.labels(status, type).inc();
 }
 
 type LoginCounterStatus =
