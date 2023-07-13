@@ -29,6 +29,8 @@ fi
 echo "Gathering list of _all_ images for $VERSION"
 # TODO(gpl) If we like this approach we should think about moving this into the installer as "list-images" or similar
 #           This would also remove the dependency to our dev image (yq4)
+touch "$TMP/config.yaml"
+chmod 777 "$TMP/config.yaml"
 docker run -v "$TMP":/workdir "eu.gcr.io/gitpod-core-dev/build/installer:${VERSION}" config init -c "/workdir/config.yaml" --log-level=warn
 docker run -v "$TMP":/workdir "eu.gcr.io/gitpod-core-dev/build/installer:${VERSION}" render -c "/workdir/config.yaml" --no-validation > "$TMP/rendered.yaml"
 yq4 --no-doc '(.. | select(key == "image" and tag == "!!str"))' "$TMP/rendered.yaml" > "$TMP/images.txt"
