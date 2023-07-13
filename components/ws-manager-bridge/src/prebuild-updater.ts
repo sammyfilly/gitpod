@@ -15,7 +15,7 @@ import { WorkspaceDB } from "@gitpod/gitpod-db/lib/workspace-db";
 import { MessageBusIntegration } from "./messagebus-integration";
 import { Metrics } from "./metrics";
 import { filterStatus } from "./bridge";
-import { RedisPublisher } from "./redis/publisher";
+import { RedisPublisher } from "@gitpod/gitpod-db/lib";
 
 @injectable()
 export class PrebuildUpdater {
